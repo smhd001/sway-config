@@ -386,6 +386,9 @@ exec_always --no-startup-id "sleep 2;/home/mohammad/.config/sway/background.py"
 
 for_window [app_id="mpv"] fullscreen enable 
 
+
+bindsym Scroll_Lock exec playerctl play-pause
+
 bindsym $mod+Print exec ~/.config/sway/screenshot.py
 
 bindsym --whole-window $mod+button4 workspace next

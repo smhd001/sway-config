@@ -7,5 +7,6 @@ this is a simple tools for taking screenshot using grim,slurp,dmenu
 it also use persin calender for name
 
 
-###todo
-- [] reorginizing config
+### todo
+
+- [ ] reorginizing config

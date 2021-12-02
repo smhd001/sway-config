@@ -58,9 +58,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 exec swayidle -w \
          timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         timeout 450 'swaylock -i ~/Pictures/wallpaper/wallhaven-dgzkdo.jpg -f -c 000000' \
+         timeout 450 'swaylock -i $(find ~/Pictures/wallpaper/bing_bg -type f | shuf -n 1) -f -c 000000' \
          timeout 600 'systemctl suspend' \
-         before-sleep 'swaylock -i ~/Pictures/wallpaper/wallhaven-dgzkdo.jpg -f -c 000000'
+         before-sleep 'swaylock -i $(find ~/Pictures/wallpaper/bing_bg -type f | shuf -n 1) -f -c 000000'\
+         after-resume 'swaymsg "output * dpms on"'
 ### Input configuration
 #
 # Example configuration:
@@ -249,16 +250,16 @@ mode "resize" {
     bindsym Up resize shrink height 10px
     bindsym Right resize grow width 10px
 
-    bindsym kp_0 resize set width 20 ppt
-    bindsym kp_1 resize set width 25 ppt
-    bindsym kp_2 resize set width 30 ppt
-    bindsym kp_3 resize set width 35 ppt
-    bindsym kp_4 resize set width 40 ppt
-    bindsym kp_5 resize set width 50 ppt
-    bindsym kp_6 resize set width 60 ppt
-    bindsym kp_7 resize set width 65 ppt
-    bindsym kp_8 resize set width 70 ppt
-    bindsym kp_9 resize set width 75 ppt
+    bindsym kp_0 resize set width 20 ppt ;mode "default"
+    bindsym kp_1 resize set width 25 ppt ;mode "default"
+    bindsym kp_2 resize set width 30 ppt ;mode "default"
+    bindsym kp_3 resize set width 35 ppt ;mode "default"
+    bindsym kp_4 resize set width 40 ppt ;mode "default"
+    bindsym kp_5 resize set width 50 ppt ;mode "default"
+    bindsym kp_6 resize set width 60 ppt ;mode "default"
+    bindsym kp_7 resize set width 65 ppt ;mode "default"
+    bindsym kp_8 resize set width 70 ppt ;mode "default"
+    bindsym kp_9 resize set width 75 ppt ;mode "default"
 
     bindsym --whole-window button7 resize shrink width 10px
     bindsym --whole-window button6 resize grow width 10px
@@ -314,6 +315,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
    xkb_numlock enabled
    xkb_options grp:rctrl_rshift_toggle,altwin:swap_alt_win,menu:escape
 }
+exec --no-startup-id swaykbdd
 
 #bindsym Mod1+Backspace exec swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout nex
 
@@ -357,8 +359,10 @@ mode "launcher" {
     bindsym c exec code
     bindsym t exec /home/mohammad/Downloads/Telegram/Telegram -workdir /home/mohammad/.local/share/TelegramDesktop/ -- %u 
     bindsym j exec ~/.joplin/Joplin.AppImage
+    #curently this keys are not working
     bindsym i exec kitty sh -c ipython3
     bindsym b exec kitty sh -c bpytop
+    ####################################
     bindsym p exec charm
     bindsym k exec kitty
 
@@ -371,7 +375,7 @@ mode "launcher" {
 bindsym $mod+shift+o mode "oh"
 
 mode "oh" {
-    bindsym --whole-window button1 workspace back_and_forth
+    bindsym --whole-window button1 workspace back_and_forth ; exec playerctl play-pause
     bindsym --whole-window $mod+button4 workspace next
     bindsym Escape mode "default"
 }
@@ -380,19 +384,21 @@ bindsym $mod+Shift+t exec /home/mohammad/Downloads/Telegram/Telegram -workdir /h
 
 exec nm-applet
 exec mako
-exec --no-startup-id swaykbdd
+bindsym $mod+Shift+r exec makoctl restore
 exec_always --no-startup-id "sleep 2;/home/mohammad/.config/sway/background.py"
 
 
 for_window [app_id="mpv"] fullscreen enable 
 
-
-bindsym Scroll_Lock exec playerctl play-pause
+bindsym XF86TouchpadToggle exec playerctl play-pause
+bindsym Scroll_Lock exec echo 'cycle pause'   | socat - /tmp/mpvsocket
 
 bindsym $mod+Print exec ~/.config/sway/screenshot.py
 
 bindsym --whole-window $mod+button4 workspace next
 bindsym --whole-window $mod+button5 workspace prev
+bindsym $mod+Ctrl+t sticky toggle
+bindsym $mod+u exec "swaymsg floating toggle; swaymsg resize set width 900 ;swaymsg resize set height 550"
 
 bindsym $mod+shift+b exec imv-wayland -f /home/mohammad/Pictures/screenshot/Sc_14000710_20211002_1531.png
 
@@ -404,6 +410,9 @@ for_window [title="TelegramDesktop"] floating enable
 
 for_window [title="TelegramDesktop"] sticky enable
 
-assign [app_id="appimagekit_db069812c7990f622afd52039791e15d-Telegram_Desktop"] workspace 3
 
+assign [app_id="appimagekit_db069812c7990f622afd52039791e15d-Telegram_Desktop"] workspace 3
+# swaymsg resize set width 1200 ;swaymsg resize set height 550
+ 
 include /etc/sway/config.d/*
+

@@ -16,6 +16,6 @@ name = path + name
 with open(name,"wb") as f:
     f.write(img.content)
 #subprocess.run(["convert",name,"-resize","1366x768",path +"backg"])
-print("name: ",name)
+print("name:",name.split("/")[-1])
 copyfile(name,path + "backg")
 subprocess.run(["swaymsg","output * bg " + path + "backg fill"])

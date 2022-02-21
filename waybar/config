@@ -9,16 +9,17 @@
     "modules-right": ["pulseaudio", "cpu", "memory", "sway/language", "battery", "tray"],
     // Modules configuration
      "sway/workspaces": {
-         "format": "{name}: {icon}",
-         "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
-             "4": "",
-             "urgent": "",
-             "focused": "",
-             "default": ""
-         }
+         "format": "{index}:{name}"
+         //"format": "{name}: {icon}",
+         //"format-icons": {
+             //"1": "",
+             //"2": "",
+             //"3": "",
+             //"4": "",
+             //"urgent": "",
+             //"focused": "",
+             //"default": ""
+         //}
      },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -65,7 +66,8 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click-right": "XDG_CURRENT_DESKTOP=kde;pavucontrol-qt",
+        "on-click": "playerctl play-pause",
+        "on-click-right": "pavucontrol-qt --platformtheme qt5ct",
 	"on-click-middle": "exec pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "custom/time": {
@@ -73,6 +75,8 @@
         "return-type": "string",
 	"interval" : 60,
 	"tooltip" : false,
-        "exec": "~/.config/waybar/my_time.sh"
+        "on-click": "sxiv -f ~/Pictures/tmp/barnameh.png ~/Pictures/tmp/taghvim.png ",
+        "on-click-right": "~/.config/sway/start_alacritty.sh",
+        "exec": "~/.config/waybar/my_time"
     }
 }

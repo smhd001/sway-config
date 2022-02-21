@@ -37,7 +37,7 @@ def gregorian_to_jalali(gy, gm, gd):
 
 
 def get_name():
-    miladi = datetime.today().strftime('%Y%m%d_%H%M')
+    miladi = datetime.today().strftime('%Y%m%d_%H:%M:%S')
     jalali = gregorian_to_jalali(
         int(miladi[:4]), int(miladi[4:6]), int(miladi[6:8]))
     return "/Sc_" + str(jalali[0]) + f"{jalali[1]:02d}" + f"{jalali[2]:02d}_" + miladi + ".png"

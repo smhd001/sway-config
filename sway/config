@@ -75,6 +75,8 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
        tap_button_map lmr
 }
 bindsym Scroll_Lock input 0:1336:USB_OPTICAL_MOUSE events toggle enabled disabled
+bindsym --whole-window $mod+button4 workspace next
+bindsym --whole-window $mod+button5 workspace prev
 
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -233,6 +235,9 @@ bindsym Scroll_Lock input 0:1336:USB_OPTICAL_MOUSE events toggle enabled disable
     # Move focus to the parent container
     bindsym $mod+a focus parent
     bindsym $mod+Shift+a focus child
+
+    smart_borders on
+    default_border pixel 1
 #
 # Scratchpad:
 #
@@ -337,11 +342,12 @@ bindsym XF86MonBrightnessDown exec --no-startup-id lxqt-config-brightness -d
 
 bindsym XF86MonBrightnessUp exec --no-startup-id lxqt-config-brightness -i
 
+bindsym XF86TouchpadToggle exec playerctl play-pause
+#bindsym Scroll_Lock exec echo 'cycle pause'   | socat - /tmp/mpvsocket
+
 bindsym XF86HomePage exec firefox
 
 
-smart_borders on
-default_border pixel 1
 
 
 bindsym Mod1+Tab focus next
@@ -382,28 +388,24 @@ mode "oh" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Shift+t exec /home/mohammad/Downloads/Telegram/Telegram -workdir /home/mohammad/.local/share/TelegramDesktop/ -- %u 
 
 bindsym $mod+Shift+r exec makoctl restore
 bindsym $mod+Shift+d exec makoctl dismiss -a
 bindsym $mod+Mod1+d exec makoctl dismiss 
 
 
-for_window [app_id="mpv"] fullscreen enable 
 
-bindsym XF86TouchpadToggle exec playerctl play-pause
-#bindsym Scroll_Lock exec echo 'cycle pause'   | socat - /tmp/mpvsocket
 
 bindsym $mod+Print exec ~/.config/sway/screenshot.py
 
-bindsym --whole-window $mod+button4 workspace next
-bindsym --whole-window $mod+button5 workspace prev
-
 bindsym --to-code $mod+shift+b exec imv-wayland -f /home/mohammad/Pictures/tmp/barnameh.png /home/mohammad/Pictures/tmp/taghvim.png
 
+bindsym $mod+Shift+t exec /home/mohammad/Downloads/Telegram/Telegram -workdir /home/mohammad/.local/share/TelegramDesktop/ -- %u 
 
 bindsym $mod+Ctrl+t sticky toggle
 bindsym $mod+u exec "swaymsg floating toggle; swaymsg resize set width 900 ;swaymsg resize set height 550"
+
+for_window [app_id="mpv"] fullscreen enable 
 for_window [title="TelegramDesktop"] floating enable
 for_window [app_id="org.kde.ark"] floating enable
 for_window [title="TelegramDesktop"] sticky enable

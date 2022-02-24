@@ -306,12 +306,16 @@ bindsym --to-code Ctrl+$mod+$left workspace prev
 bar {
     swaybar_command waybar
 }
+bindsym $mod+x exec "killall -SIGUSR1 waybar && sleep 5 && killall -SIGUSR1 waybar"
+bindsym $mod+shift+x exec killall -SIGUSR1 waybar
+
 input "1:1:AT_Translated_Set_2_keyboard" {
    xkb_layout us(dvp),ir
    xkb_numlock enabled
    xkb_options grp:rctrl_rshift_toggle,altwin:swap_alt_win
 }
 bindsym $mod+Arabic_khah exec wtype 😂
+
 exec --no-startup-id swaykbdd
 exec ~/.cargo/bin/sworkstyle &> /tmp/sworkstyle.log
 exec nm-applet
@@ -394,20 +398,15 @@ bindsym $mod+Print exec ~/.config/sway/screenshot.py
 
 bindsym --whole-window $mod+button4 workspace next
 bindsym --whole-window $mod+button5 workspace prev
-bindsym $mod+Ctrl+t sticky toggle
-bindsym $mod+u exec "swaymsg floating toggle; swaymsg resize set width 900 ;swaymsg resize set height 550"
 
 bindsym --to-code $mod+shift+b exec imv-wayland -f /home/mohammad/Pictures/tmp/barnameh.png /home/mohammad/Pictures/tmp/taghvim.png
-bindsym $mod+shift+x exec killall -SIGUSR1 waybar
 
-bindsym $mod+x exec "killall -SIGUSR1 waybar && sleep 5 && killall -SIGUSR1 waybar"
 
+bindsym $mod+Ctrl+t sticky toggle
+bindsym $mod+u exec "swaymsg floating toggle; swaymsg resize set width 900 ;swaymsg resize set height 550"
 for_window [title="TelegramDesktop"] floating enable
 for_window [app_id="org.kde.ark"] floating enable
-
 for_window [title="TelegramDesktop"] sticky enable
-
-
 
 assign [app_id="appimagekit_db069812c7990f622afd52039791e15d-Telegram_Desktop"] workspace number 3
 # swaymsg resize set width 1200 ;swaymsg resize set height 550

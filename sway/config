@@ -344,8 +344,6 @@ bindsym XF86TouchpadToggle exec playerctl play-pause
 bindsym XF86HomePage exec firefox
 
 
-
-
 bindsym Mod1+Tab focus next
 
 

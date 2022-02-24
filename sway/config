@@ -288,7 +288,6 @@ mode "resize" {
     bindsym parenright move container to workspace number 8
     bindsym plus move container to workspace number 9
     bindsym bracketright move container to workspace number 10
-    #nt a[n];
     #Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"

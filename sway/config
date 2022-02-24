@@ -377,6 +377,7 @@ mode "launcher" {
     bindsym i exec $term -e /home/mohammad/.local/bin/ipython3 ; mode "default"
     bindsym p exec $term -e /bin/python3 ; mode "default"
     bindsym b exec $term -e btop ; mode "default"
+    bindsym v exec $term -e ~/.local/bin/lvim ; mode "default"
 
     ####################################
     #bindsym p exec charm

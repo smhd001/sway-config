@@ -4,6 +4,7 @@ import os
 from os.path import expanduser
 import sys
 from time import sleep
+import re
 
 #deafult area for screenshot
 d_area = "s"
@@ -58,11 +59,15 @@ def take():
     name = path + get_name()
     print(name)
     print("grim" + " " + options + " " + name)
+    if s:
+        sleep(s)
     if not (os.system("grim" + " " + options + " " + name)):
         if "c" in ord:
             os.popen("wl-copy < " + name)
         if "e" in ord:
             os.popen("imv-wayland " + name)
+            sleep(2)
+            os.popen("swaymsg floating toggle; swaymsg resize set width 400 ;swaymsg resize set height 250")
 
 
 if __name__ == "__main__":
@@ -85,4 +90,10 @@ if __name__ == "__main__":
         options = "-g \"$(slurp)\""
     if "w" in ord:
         options = "-g \"$(swaymsg -t get_tree | jq -j \'.. | select(.type?) | select(.focused).rect | \"\(.x),\(.y) \(.width)x\(.height)\"\')\""
+
+
+    s = re.findall(r'\d+', ord)
+    if s:
+        s = int(s[0])
+
     take()

@@ -7,6 +7,7 @@
     "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
     "modules-center": ["custom/time"],
     "modules-right": ["pulseaudio", "cpu", "memory", "sway/language", "battery", "tray"],
+    "ipc": true,
     // Modules configuration
      "sway/workspaces": {
          "format": "{index}:{name}"
@@ -75,7 +76,7 @@
         "return-type": "string",
 	"interval" : 60,
 	"tooltip" : false,
-        "on-click": "sxiv -f ~/Pictures/tmp/barnameh.png ~/Pictures/tmp/taghvim.png ",
+        "on-click": "~/.config/waybar/time_click.sh sxiv",
         "on-click-right": "~/.config/sway/start_alacritty.sh",
         "exec": "~/.config/waybar/my_time"
     }

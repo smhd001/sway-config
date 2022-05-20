@@ -12,11 +12,12 @@ set $right l
 # Your preferred terminal emulator
 #set $term kitty
 set $term ~/.config/sway/start_alacritty.sh 
-# Your preferred application launcher
+#this hellps to start alacrity with existing socket or creat one
+
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu rofi -show drun
+set $menu fuzzel
 
 #set $menu rofi -show drun | xargs swaymsg exec --
 
@@ -33,6 +34,7 @@ set $menu rofi -show drun
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+exec_always --no-startup-id "sleep 2;/home/mohammad/.config/sway/background.py"
 #
 # Example configuration:
 #
@@ -58,11 +60,9 @@ exec swayidle -w \
          timeout 450 'swaylock -i $(find ~/Pictures/wallpaper/bing_bg -type f | shuf -n 1) -f -c 000000' \
          timeout 600 'systemctl suspend' \
          before-sleep 'swaylock -i $(find ~/Pictures/wallpaper/bing_bg -type f | shuf -n 1) -f -c 000000'\
-         after-resume 'swaymsg "output * dpms on"'
+         after-resume 'swaymsg "output * dpms on"; killall -SIGUSR2 waybar'
+
 ### Input configuration
-#
-# Example configuration:
-#
 input "2:7:SynPS/2_Synaptics_TouchPad" {
        dwt enabled
        tap enabled
@@ -74,9 +74,6 @@ bindsym Scroll_Lock input 0:1336:USB_OPTICAL_MOUSE events toggle enabled disable
 bindsym --whole-window $mod+button4 workspace next
 bindsym --whole-window $mod+button5 workspace prev
 
-
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
 #
@@ -106,7 +103,8 @@ bindsym --whole-window $mod+button5 workspace prev
     # Reload the configuration file
     bindsym $mod+Shift+c reload
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e seat seat0 cursor set 1250 50 ; exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+Shift+e seat seat0 cursor set 1250 50 ; exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e seat seat0 cursor set 1250 50 ; exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit ; killall sworkstyle'
     
 #
 # Moving around:
@@ -163,19 +161,11 @@ bindsym --whole-window $mod+button5 workspace prev
     bindsym $mod+Farsi_3 workspace number 3
     bindsym $mod+Farsi_4 workspace number 4
     bindsym $mod+Farsi_5 workspace number 5
-
-    # Move focused container to workspace
-    #bindsym $mod+Shift+1 move container to workspace number 1
-    #bindsym $mod+Shift+2 move container to workspace number 2
-    #bindsym $mod+Shift+3 move container to workspace number 3
-    #bindsym $mod+Shift+4 move container to workspace number 4
-    #bindsym $mod+Shift+5 move container to workspace number 5
-    #bindsym $mod+Shift+6 move container to workspace number 6
-    #bindsym $mod+Shift+7 move container to workspace number 7
-    #bindsym $mod+Shift+8 move container to workspace number 8
-    #bindsym $mod+Shift+9 move container to workspace number 9
-    #bindsym $mod+Shift+0 move container to workspace number 10
-
+    bindsym $mod+Farsi_6 workspace number 6
+    bindsym $mod+Farsi_7 workspace number 7
+    bindsym $mod+Farsi_8 workspace number 8
+    bindsym $mod+Farsi_9 workspace number 9
+    bindsym $mod+Farsi_0 workspace number 10
 
 
     bindsym $mod+Shift+ampersand move container to workspace number 1
@@ -307,8 +297,8 @@ bindsym --to-code Ctrl+$mod+$left workspace prev
 bar {
     swaybar_command waybar
 }
-bindsym $mod+x exec "killall -SIGUSR1 waybar && sleep 5 && killall -SIGUSR1 waybar"
-bindsym $mod+shift+x exec killall -SIGUSR1 waybar
+bindsym $mod+x bar mode dock
+bindsym $mod+shift+x bar mode hide
 
 input "1:1:AT_Translated_Set_2_keyboard" {
    xkb_layout us(dvp),ir
@@ -321,9 +311,6 @@ exec --no-startup-id swaykbdd
 exec ~/.cargo/bin/sworkstyle &> /tmp/sworkstyle.log
 exec nm-applet
 exec mako
-exec_always --no-startup-id "sleep 2;/home/mohammad/.config/sway/background.py"
-
-#bindsym Mod1+Backspace exec swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout nex
 
 
 
@@ -338,17 +325,14 @@ bindsym XF86MonBrightnessDown exec --no-startup-id lxqt-config-brightness -d
 
 bindsym XF86MonBrightnessUp exec --no-startup-id lxqt-config-brightness -i
 
-bindsym XF86TouchpadToggle exec playerctl play-pause
-#bindsym Scroll_Lock exec echo 'cycle pause'   | socat - /tmp/mpvsocket
+bindsym XF86TouchpadToggle exec playerctl -a play-pause
 
 bindsym XF86HomePage exec firefox
 
 
 bindsym Mod1+Tab focus next
-
-
-
-
+#swich focus even if itst fullscreen
+bindsym $mod+dollar fullscreen ; focus next ; fullscreen
 bindsym $mod+o mode "launcher"
 
 mode "launcher" {
@@ -377,14 +361,14 @@ mode "launcher" {
 bindsym $mod+shift+o mode "oh"
 
 mode "oh" {
-    bindsym --whole-window button1 workspace back_and_forth ; exec playerctl -a play-pause
+    bindsym --whole-window button1 workspace back_and_forth ; exec playerctl play-pause
     bindsym --whole-window $mod+button4 workspace next
     bindsym Escape mode "default"
 }
 
 
 bindsym $mod+Shift+r exec makoctl restore
-bindsym $mod+Shift+d exec makoctl dismiss -a
+bindsym --to-code $mod+Shift+d exec makoctl dismiss -a
 bindsym $mod+Mod1+d exec makoctl dismiss 
 
 
@@ -392,7 +376,7 @@ bindsym $mod+Mod1+d exec makoctl dismiss
 
 bindsym $mod+Print exec ~/.config/sway/screenshot.py
 
-bindsym --to-code $mod+shift+b exec imv-wayland -f /home/mohammad/Pictures/tmp/barnameh.png /home/mohammad/Pictures/tmp/taghvim.png
+bindsym --to-code $mod+shift+b exec ~/.config/waybar/time_click.sh "imv-wayland -f" 
 
 bindsym $mod+Shift+t exec /home/mohammad/Downloads/Telegram/Telegram -workdir /home/mohammad/.local/share/TelegramDesktop/ -- %u 
 
@@ -406,6 +390,7 @@ for_window [title="TelegramDesktop"] sticky enable
 
 assign [app_id="appimagekit_db069812c7990f622afd52039791e15d-Telegram_Desktop"] workspace number 3
 # swaymsg resize set width 1200 ;swaymsg resize set height 550
+bindsym $mod+Alt+n exec /tmp/sh.sh
  
 include /etc/sway/config.d/*
 

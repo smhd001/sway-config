@@ -3,6 +3,10 @@ import requests
 import subprocess
 import os
 from shutil import copyfile
+
+#config
+notify = True
+
 url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US"
 path = os.path.expanduser("~/Pictures/wallpaper/bing_bg/")
 #https://bing.com/th?id=OHR.Italica_EN-US1640838317_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp
@@ -20,9 +24,11 @@ try:
         if f.readlines()[-1] != info + "\n":
             new = True
         else:
+            print("no new image")
             new = False
 except Exception:
-    print("no internet")
+    if notify:
+        subprocess.run(["dunstify","no net"])
     with open(path + "info.txt", "r") as f:
         info = f.readlines()[-1][:-1]
     new = False
@@ -40,7 +46,8 @@ if new:
         date = date[:4] + "-" + date[4:6] + "-" + date[6:]
         f.write("[ " + date + " ] | " + (name).split(".")[0] + ":\n")
         f.write( info + "\n")
-        subprocess.run(["dunstify",name.split(".")[0],info ,"-t","9000"])
+        if notify:
+            subprocess.run(["dunstify",name.split(".")[0], info, "-t", "9000"])
     copyfile(path + name ,path + "backg")
 
 

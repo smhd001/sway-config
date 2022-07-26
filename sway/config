@@ -298,7 +298,7 @@ bar {
     swaybar_command waybar
 }
 bindsym $mod+x bar mode dock
-bindsym $mod+shift+x bar mode hide
+bindsym $mod+shift+x bar mode invisible
 
 input "1:1:AT_Translated_Set_2_keyboard" {
    xkb_layout us(dvp),ir

@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
     "modules-center": ["custom/time"],
-    "modules-right": ["pulseaudio", "cpu", "memory", "sway/language", "battery", "tray"],
+    "modules-right": ["pulseaudio", "cpu", "memory",  "battery", "sway/language","tray"],
     "ipc": true,
     // Modules configuration
      "sway/workspaces": {
@@ -46,9 +46,11 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
+        "format-good": "", // An empty format will hide the module
         "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "on-scroll-up": "brightnessctl s +5%",
+        "on-scroll-down": "brightnessctl s 5%-"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float

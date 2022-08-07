@@ -61,18 +61,10 @@ window#waybar.hidden {
 #clock,
 #battery,
 #cpu,
-#custom-jdate
 #memory,
-#disk,
-#backlight,
-#network,
 #pulseaudio,
-#custom-waybar-mpris,
-#taskbar,
 #tray,
-#mode,
-#idle_inhibitor,
-#mpd {
+#mode {
     padding: 0 10px;
     color: black;
     margin-bottom: 3px;
@@ -176,15 +168,6 @@ label:focus {
     color: red;
 }
 
-#custom-power{
-    background-color: #FA8BFF;
-    background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    font-size: 18px;
-    border-radius: 20px;
-    margin-left: 2px;
-}
-
-
 #custom-time{
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
@@ -195,18 +178,6 @@ label:focus {
     margin-top: 2px;
 
 }
-
-#taskbar {
-    background-color: #2BD2FF;
-    background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #FA8BFF 90%);
-    border-radius: 20px;
-
-}
-#taskbar button.active{
-   background: #ffffff;
-
-}
-
 
 #tray {
     background-color: #FA8BFF;
@@ -237,18 +208,4 @@ label:focus {
     border-radius: 20px 0px 0px 20px;
     margin-bottom: 3px;
     margin-top: 2px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    min-width: 16px;
-}
-
-#keyboard-state > label {
-    padding: 0px 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
 }

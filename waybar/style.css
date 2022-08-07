@@ -163,28 +163,6 @@ label:focus {
     margin-top: 2px;
 }
 
-#disk {
-    background-color: #FA8BFF;
-    background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    color: black;
-}
-
-#backlight {
-    background-color: #90b1b1;
-}
-
-#network {
-    background-color: #FA8BFF;
-    background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    color: black;
-}
-
-#network.disconnected {
-    background-color: #FA8BFF;
-    background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    color: red;
-}
-
 #pulseaudio {
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
@@ -196,32 +174,6 @@ label:focus {
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
     color: red;
-}
-
-#custom-waybar-mpris {
-    background-color: #8EC5FC;
-    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-    color: black;
-    border-radius: 20px;
-    margin-right: 5px;
-    margin-left: 5px;
-}
-
-#custom-waybar-mpris.custom-spotify {
-    background-color: #8EC5FC;
-    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-    color: black;
-    border-radius: 20px;
-    margin-right: 5px;
-
-}
-
-#custom-waybar-mpris.custom-vlc {
-    background-color: #8EC5FC;
-    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-    color: black;
-    border-radius: 20px;
-    margin-right: 5px;
 }
 
 #custom-power{
@@ -274,21 +226,6 @@ label:focus {
     background-color: #FA8BFF;
     background-image: linear-gradient(-45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
     color: black;
-}
-
-#idle_inhibitor {
-    background-color: #FA8BFF;
-    background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    border-radius: 20px 0px 0px 20px;
-
-}
-
-#idle_inhibitor.activated {
-    background-color: #FA8BFF;
-    background-image: linear-gradient(45deg, #FA8BFF 0%, #9BF2FF 52%, #2BD2FF 90%);
-    color: black;
-    border-radius: 20px 0px 0px 20px;
-
 }
 
 #language {

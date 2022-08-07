@@ -13,6 +13,9 @@ d_act =  "c"
 
 d_path = "~/Pictures/screenshot"
 
+# Gregorian & Jalali ( Hijri_Shamsi , Solar ) Date Converter  Functions
+# Author: JDF.SCR.IR =>> Download Full Version :  http://jdf.scr.ir/jdf
+# License: GNU/LGPL _ Open Source & Free :: Version: 2.80 : [2020=1399]
 def gregorian_to_jalali(gy, gm, gd):
     g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
     if (gm > 2):

@@ -9,7 +9,6 @@
     font-size: 13px;
     min-height: 0;
 }
-
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
@@ -17,48 +16,38 @@ window#waybar {
     transition-property: background-color;
     transition-duration: .5s;
 }
-
 window#waybar.hidden {
     opacity: 0.2;
 }
-
-
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
     color: #ffffff;
     border-bottom: 3px solid transparent;
 }
-
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
     box-shadow: inherit;
     border-bottom: 3px solid #ffffff;
 }
-
 #workspaces button.focused {
     background-color: #64727D;
     border-bottom: 3px solid #ffffff;
 }
-
 #workspaces button.focused:hover {
     background: lightblue;
     color: black;
     border-bottom: 3px solid black;
 
 }
-
 #workspaces button.urgent {
     background-color: #eb4d4b;
 }
-
 #mode {
     background-color: #64727D;
     border-bottom: 3px solid black;
 }
-
-#clock,
 #battery,
 #cpu,
 #memory,
@@ -70,58 +59,40 @@ window#waybar.hidden {
     margin-bottom: 3px;
     margin-top: 2px;
 }
-
 #window,
 #workspaces {
     margin: 0px 4px;
 }
-
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
     margin-left: 0px;
 }
-
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0px;
 }
-
-#clock {
-    background-color: #FA8BFF;
-    background-image: linear-gradient(-45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-    color: black;
-    border-radius: 0px 20px 20px 0px;
-    margin-right: 4px;
-
-}
-
 #battery{
     margin-right: 4px;
     border-radius: 0px 20px 20px 0px;
 }
-
 #battery.good {
     background-color: #FFD600;
     color: #000000;
 }
-
 #battery {
     background-color: #ffffff;
     color: #000000;
 }
-
 #battery.charging {
     color: #ffffff;
     background-color: #26A65B;
 }
-
 @keyframes blink {
     to {
         background-color: #ffffff;
         color: #000000;
     }
 }
-
 #battery.warning:not(.charging) {
     background-color: #FFD600;
     color: #000000;
@@ -135,17 +106,14 @@ window#waybar.hidden {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-
 label:focus {
     background-color: #000000;
 }
-
 #cpu {
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
     color: black;
 }
-
 #memory {
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
@@ -154,20 +122,17 @@ label:focus {
     margin-bottom: 3px;
     margin-top: 2px;
 }
-
 #pulseaudio {
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
     border-radius: 20px 0px 0px 20px;
     color: black;
 }
-
 #pulseaudio.muted {
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
     color: red;
 }
-
 #custom-time{
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
@@ -176,22 +141,18 @@ label:focus {
     padding: 0 10px;
     margin-bottom: 3px;
     margin-top: 2px;
-
 }
-
 #tray {
     background-color: #FA8BFF;
     background-image: linear-gradient(-45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
     color: black;
 }
-
 #tray > .passive {
     -gtk-icon-effect: dim;
     background-color: #FA8BFF;
     background-image: linear-gradient(-45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
     color: black;
 }
-
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
     background-color: #FA8BFF;
